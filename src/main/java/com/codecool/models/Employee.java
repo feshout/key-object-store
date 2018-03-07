@@ -51,4 +51,11 @@ public class Employee implements Serializable {
     public void setIncomes(BigDecimal incomes) {
         this.incomes = incomes;
     }
+
+    public String toString(){
+        return "First name: " + firstName + "\n" +
+                "Last name: " + lastName + "\n" +
+                "Email: " + email + "\n" +
+                "Salary: " + incomes.toString();
+    }
 }

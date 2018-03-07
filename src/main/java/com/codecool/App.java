@@ -1,9 +1,12 @@
 package com.codecool;
 
+import com.codecool.controller.AppController;
+import com.codecool.dao.EmployeeDao;
 import com.codecool.models.Employee;
 import com.codecool.models.Product;
-import com.codecool.utils.DatabaseConnection;
+import com.codecool.utils.DatabaseProvider;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 
@@ -11,13 +14,14 @@ public class App
 {
     public static void main( String[] args ) {
 
-        Employee employee1 = new Employee("Marian", "Koster", "koster@gmail.com", new BigDecimal("2000.0"));
-        Employee employee2 = new Employee("Adrian", "Marny", "marny@gmail.com", new BigDecimal("2000.0"));
 
-        Product product1 = new Product("Kiełbasa", "Kiełba z pierzem", new BigDecimal("15.00"));
-        Product product2 = new Product("Masło", "Masło 100%", new BigDecimal("5.00"));
+//        String serverName = args[0];
+//        int port = Integer.parseInt(args[1]);
 
-        DatabaseConnection databaseConnection = new DatabaseConnection("192.168.10.195", 9000);
+        DatabaseProvider.createConnection("192.168.10.195", 9000); // for testing
+//        DatabaseProvider.createConnection(serverName, port);
 
+        AppController appController = new AppController();
+        appController.start();
     }
 }

@@ -17,4 +17,34 @@ public class Product implements Serializable {
         this.description = description;
         this.price = price;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String toString() {
+        return "Product name: " + name + "\n" +
+                "Description: " + description + "\n" +
+                "Price: " + price.toString();
+    }
 }
