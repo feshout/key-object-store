@@ -1,19 +1,19 @@
-package com.codecool.utils;
+package com.codecool.connection;
 
 
 import java.io.*;
 import java.net.Socket;
 
-public class DatabaseProvider {
+public class ServerConnection {
 
     private Socket socket;
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
     private WrapperHelper wrapperHelper;
-    private static DatabaseProvider instance = null;
+    private static ServerConnection instance = null;
 
 
-    private DatabaseProvider(String serverName, int port){
+    private ServerConnection(String serverName, int port){
 
         try{
             this.socket = new Socket(serverName, port);
@@ -58,13 +58,17 @@ public class DatabaseProvider {
     public static void createConnection(String serverName, int port) {
 
         if(instance == null) {
-            instance = new DatabaseProvider(serverName, port);
+            instance = new ServerConnection(serverName, port);
         } else {
             getConnection();
         }
     }
 
-    public static DatabaseProvider getConnection() {
+    public static ServerConnection getConnection() {
         return instance;
+    }
+
+    public void closeConnection() throws IOException{
+        this.socket.close();
     }
 }

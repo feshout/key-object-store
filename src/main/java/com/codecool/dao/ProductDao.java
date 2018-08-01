@@ -1,19 +1,19 @@
 package com.codecool.dao;
 
 import com.codecool.models.Product;
-import com.codecool.utils.DatabaseProvider;
+import com.codecool.connection.ServerConnection;
 
 import java.io.IOException;
 
 public class ProductDao implements Accessable<Product>{
 
-    private DatabaseProvider databaseProvider = DatabaseProvider.getConnection();
+    private ServerConnection serverConnection = ServerConnection.getConnection();
 
     public Product getData(String keyName){
 
         Product product = null;
         try {
-            product = (Product) DatabaseProvider.getConnection().getData(keyName);
+            product = (Product) ServerConnection.getConnection().getData(keyName);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -25,7 +25,7 @@ public class ProductDao implements Accessable<Product>{
     public void sendData(String keyName ,Product product) {
 
         try {
-            databaseProvider.sendData(keyName, product);
+            serverConnection.sendData(keyName, product);
         } catch (IOException e) {
             e.printStackTrace();
         }

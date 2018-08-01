@@ -1,19 +1,19 @@
 package com.codecool.dao;
 
 import com.codecool.models.Employee;
-import com.codecool.utils.DatabaseProvider;
+import com.codecool.connection.ServerConnection;
 
 import java.io.IOException;
 
 public class EmployeeDao implements Accessable<Employee> {
 
-    private DatabaseProvider databaseProvider = DatabaseProvider.getConnection();
+    private ServerConnection serverConnection = ServerConnection.getConnection();
 
     public Employee getData(String keyName){
 
         Employee employee = null;
         try {
-            employee = (Employee) DatabaseProvider.getConnection().getData(keyName);
+            employee = (Employee) ServerConnection.getConnection().getData(keyName);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -25,7 +25,7 @@ public class EmployeeDao implements Accessable<Employee> {
     public void sendData(String key, Employee employee) {
 
         try {
-            databaseProvider.sendData(key, employee);
+            serverConnection.sendData(key, employee);
         } catch (IOException e) {
             e.printStackTrace();
         }

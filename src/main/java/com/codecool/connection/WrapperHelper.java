@@ -1,4 +1,4 @@
-package com.codecool.utils;
+package com.codecool.connection;
 
 
 import java.io.*;
